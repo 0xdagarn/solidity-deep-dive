@@ -10,6 +10,10 @@ contract A {
         console.log("A deployed");
         _a = a;
     }
+
+    function setN() public virtual {
+        console.log("A");
+    }
 }
 
 contract B {
@@ -18,6 +22,10 @@ contract B {
     constructor(uint256 b) {
         console.log("B deployed");
         _b = b;
+    }
+
+    function setN() public virtual {
+        console.log("B");
     }
 }
 
@@ -28,12 +36,7 @@ contract Counter is A, B {
         console.log("Counter deployed");
     }
 
-    function setNumber(uint256 newNumber) public {
-        console.log("setNumber(%s)", newNumber);
-        number = newNumber;
-    }
-
-    function increment() public {
-        number++;
+    function setN() public override(A, B) {
+        console.log("B");
     }
 }
